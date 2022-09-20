@@ -18,6 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import static org.springframework.http.MediaType.*;
 
@@ -31,7 +32,8 @@ public class ServerResource {
     private final ServerService serverService;
 
     @GetMapping(path = "/list")
-    public ResponseEntity<Response> getServers(){
+    public ResponseEntity<Response> getServers() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(3);
         log.info("Inside getServers() method of ServerResource");
         return ResponseEntity.ok(
                 Response.builder()
